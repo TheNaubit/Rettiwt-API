@@ -16,7 +16,7 @@ dependencies:
     version: 1.2.0
   rettiwt-core:
     specifier: git+https://github.com/TheNaubit/Rettiwt-Core.git
-    version: github.com/TheNaubit/Rettiwt-Core/7fdeb87c20e51d49b33ca33becb63255853af915
+    version: github.com/TheNaubit/Rettiwt-Core/6dbc1000b30be4b30d8d49a9940ff14af1d84526
 
 devDependencies:
   '@types/node':
@@ -1381,8 +1381,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/TheNaubit/Rettiwt-Core/7fdeb87c20e51d49b33ca33becb63255853af915:
-    resolution: {tarball: https://codeload.github.com/TheNaubit/Rettiwt-Core/tar.gz/7fdeb87c20e51d49b33ca33becb63255853af915}
+  github.com/TheNaubit/Rettiwt-Core/6dbc1000b30be4b30d8d49a9940ff14af1d84526:
+    resolution: {tarball: https://codeload.github.com/TheNaubit/Rettiwt-Core/tar.gz/6dbc1000b30be4b30d8d49a9940ff14af1d84526}
     name: rettiwt-core
     version: 3.2.0-alpha.3
     prepare: true

@@ -138,9 +138,26 @@ export class TweetService extends FetcherService {
 	 *
 	 * @public
 	 */
-	async tweet(tweetText: string): Promise<boolean> {
+	async tweet(tweetText: string, mediaID?: string, replyTo?: string): Promise<boolean> {
 		// Posting the tweet
-		const data = await this.post(EResourceType.CREATE_TWEET, { tweetText: tweetText });
+		const data = await this.post(EResourceType.CREATE_TWEET, {
+			tweetText: tweetText,
+			...(mediaID && {
+				media: {
+					// eslint-disable-next-line @typescript-eslint/naming-convention
+					media_entities: [
+						{
+							// eslint-disable-next-line @typescript-eslint/naming-convention
+							media_id: mediaID,
+							// eslint-disable-next-line @typescript-eslint/naming-convention
+							tagged_users: [],
+						},
+					],
+				},
+			}),
+			// eslint-disable-next-line @typescript-eslint/naming-convention
+			...(replyTo && { reply: { in_reply_to_tweet_id: replyTo, exclude_reply_user_ids: [] } }),
+		});
 
 		return data;
 	}
