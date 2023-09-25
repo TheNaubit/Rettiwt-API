@@ -138,7 +138,10 @@ export class TweetService extends FetcherService {
 	 *
 	 * @public
 	 */
-	async tweet(tweetText: string, mediaID?: string, replyTo?: string): Promise<boolean> {
+	async tweet(tweetText: string, mediaID?: string, replyTo?: string): Promise<{
+		success: boolean;
+		id: string;
+	}> {
 		// Posting the tweet
 		const data = await this.post(EResourceType.CREATE_TWEET, {
 			tweetText: tweetText,
@@ -170,7 +173,10 @@ export class TweetService extends FetcherService {
 	 *
 	 * @public
 	 */
-	async favorite(tweetId: string): Promise<boolean> {
+	async favorite(tweetId: string): Promise<{
+		success: boolean;
+		id: string;
+	}> {
 		// Favoriting the tweet
 		const data = await this.post(EResourceType.FAVORITE_TWEET, { id: tweetId });
 
@@ -185,7 +191,10 @@ export class TweetService extends FetcherService {
 	 *
 	 * @public
 	 */
-	async retweet(tweetId: string): Promise<boolean> {
+	async retweet(tweetId: string): Promise<{
+		success: boolean;
+		id: string;
+	}> {
 		// Retweeting the tweet
 		const data = await this.post(EResourceType.CREATE_RETWEET, { id: tweetId });
 

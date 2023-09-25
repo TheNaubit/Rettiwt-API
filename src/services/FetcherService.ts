@@ -216,13 +216,39 @@ export class FetcherService {
 	 * @param args - Resource specific arguments.
 	 * @returns Whether posting was successful or not.
 	 */
-	protected async post(resourceType: EResourceType, args: Args): Promise<boolean> {
-		// Preparing the HTTP request
-		const request: Request = new Request(resourceType, args);
+	protected async post(
+		resourceType: EResourceType,
+		args: Args,
+	): Promise<{
+		success: boolean;
+		id: string;
+	}> {
+		try {
+			// Preparing the HTTP request
+			const request: Request = new Request(resourceType, args);
 
-		// Posting the data
-		await this.request(request);
+			// // Posting the data
+			const rq = await this.request(request);
+			// console.log(JSON.stringify(request, undefined, 4));
 
-		return true;
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			const id = rq.data.data['create_tweet']['tweet_results']['result']['rest_id'] as string;
+
+			// Posting the data
+			await this.request(request);
+
+			return {
+				success: true,
+				id,
+			};
+		} catch (err) {
+			console.error(err);
+			return {
+				success: false,
+				id: '',
+			};
+		}
 	}
 }
